@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHERPA Guild | Independence Without Isolation</title>
+  <meta
+    name="description"
+    content="SHERPA Guild is a performance collective for independent advisors built to increase EBITDA, improve operational efficiency, and create market leverage without taking ownership."
+  />
+  <style>
+    :root {
+      --ink: #17201b;
+      --forest: #194c3a;
+      --pine: #236147;
+      --leaf: #2f7a57;
+      --gold: #c79a2b;
+      --copper: #b65f3d;
+      --paper: #f7f8f4;
+      --mist: #e8efe8;
+      --white: #ffffff;
+      --line: rgba(23, 32, 27, 0.13);
+      --shadow: 0 22px 48px rgba(23, 32, 27, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .topbar {
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.85rem;
+    }
+
+    .topbar__inner,
+    .nav__inner,
+    .section__inner,
+    .footer__inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+    }
+
+    .topbar__links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 750;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(23, 32, 27, 0.09);
+      background: rgba(247, 248, 244, 0.94);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 82px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 230px;
+    }
+
+    .brand__mark {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--forest);
+      border-radius: 8px;
+      color: var(--forest);
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .brand__name {
+      display: block;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      line-height: 1.08;
+    }
+
+    .brand__sub {
+      display: block;
+      margin-top: 3px;
+      color: rgba(23, 32, 27, 0.66);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: rgba(23, 32, 27, 0.78);
+      font-size: 0.84rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .nav__links a {
+      padding: 29px 0;
+    }
+
+    .nav__links a:hover {
+      color: var(--forest);
+    }
+
+    .nav__cta {
+      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+      padding: 10px 13px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 950;
+      letter-spacing: 0.01em;
+      padding: 12px 18px;
+      text-align: center;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .btn--primary:hover {
+      background: var(--leaf);
+    }
+
+    .btn--light {
+      background: var(--white);
+      color: var(--forest);
+    }
+
+    .btn--outline {
+      border-color: rgba(255, 255, 255, 0.62);
+      color: var(--white);
+    }
+
+    .btn--outline-dark {
+      border-color: var(--forest);
+      color: var(--forest);
+    }
+
+    section {
+      scroll-margin-top: 88px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 122px);
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .hero__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.34;
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(90deg, rgba(23, 32, 27, 0.94) 0%, rgba(23, 32, 27, 0.74) 50%, rgba(23, 32, 27, 0.2) 100%),
+        linear-gradient(0deg, rgba(25, 76, 58, 0.46), transparent 44%);
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      width: min(1180px, calc(100% - 32px));
+      min-height: calc(100vh - 122px);
+      margin: 0 auto;
+      padding: 72px 0 118px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      max-width: 860px;
+      margin: 16px 0 0;
+      font-size: 4.65rem;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 670px;
+      margin: 24px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 1.18rem;
+      line-height: 1.75;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero__metrics {
+      position: absolute;
+      right: 0;
+      bottom: 24px;
+      left: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--ink);
+    }
+
+    .metric {
+      min-height: 112px;
+      padding: 22px;
+    }
+
+    .metric + .metric {
+      border-left: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(23, 32, 27, 0.72);
+      font-size: 0.93rem;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section--white {
+      background: var(--white);
+    }
+
+    .section--forest {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.7fr);
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      margin: 10px 0 0;
+      font-size: 3rem;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: rgba(23, 32, 27, 0.7);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    .section--forest .section-heading p {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .split__image {
+      width: 100%;
+      min-height: 560px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .statement {
+      max-width: 740px;
+    }
+
+    .statement h2 {
+      margin: 10px 0 0;
+      color: var(--forest);
+      font-size: 3rem;
+      line-height: 1.06;
+    }
+
+    .statement p {
+      margin: 18px 0 0;
+      color: rgba(23, 32, 27, 0.72);
+      font-size: 1.05rem;
+      line-height: 1.76;
+    }
+
+    .pressure-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .pressure-item {
+      border-left: 5px solid var(--gold);
+      background: var(--white);
+      padding: 20px 22px;
+      box-shadow: 0 16px 34px rgba(23, 32, 27, 0.08);
+    }
+
+    .pressure-item strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.08rem;
+    }
+
+    .pressure-item span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(23, 32, 27, 0.7);
+    }
+
+    .origin {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .origin__panel,
+    .origin__body {
+      background: var(--white);
+      padding: 34px;
+    }
+
+    .origin__panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      background:
+        linear-gradient(rgba(23, 32, 27, 0.7), rgba(23, 32, 27, 0.7)),
+        url("./assets/allegheny-mountains-fire-drill.png") center/cover;
+      color: var(--white);
+    }
+
+    .origin__panel h2 {
+      margin: 12px 0 0;
+      font-size: 2.55rem;
+      line-height: 1.07;
+    }
+
+    .origin__panel p {
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+    }
+
+    .origin__body {
+      display: grid;
+      gap: 18px;
+    }
+
+    .origin-step {
+      border-left: 5px solid var(--copper);
+      background: var(--paper);
+      padding: 22px 24px;
+    }
+
+    .origin-step h3 {
+      margin: 0;
+      color: var(--forest);
+      font-size: 1.25rem;
+    }
+
+    .origin-step p {
+      margin: 8px 0 0;
+      color: rgba(23, 32, 27, 0.72);
+    }
+
+    .not-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .not-card {
+      min-height: 330px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+    }
+
+    .not-card h3 {
+      margin: 0;
+      font-size: 1.45rem;
+    }
+
+    .not-card ul {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 750;
+    }
+
+    .not-card li {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      padding-top: 12px;
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .system-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 310px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 26px;
+      box-shadow: 0 18px 38px rgba(23, 32, 27, 0.08);
+    }
+
+    .system-card span {
+      color: var(--copper);
+      font-size: 0.74rem;
+      font-weight: 950;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .system-card h3 {
+      margin: 22px 0 0;
+      color: var(--forest);
+      font-size: 1.35rem;
+      line-height: 1.18;
+    }
+
+    .system-card p {
+      margin: 14px 0 0;
+      color: rgba(23, 32, 27, 0.7);
+    }
+
+    .change {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .change-step {
+      min-height: 310px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+    }
+
+    .change-step span {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 8px;
+      color: var(--gold);
+      font-weight: 950;
+    }
+
+    .change-step h3 {
+      margin: 28px 0 0;
+      font-size: 1.45rem;
+    }
+
+    .change-step p {
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .path {
+      min-height: 240px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 24px;
+    }
+
+    .path--guild {
+      border-top: 5px solid var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .path span {
+      color: var(--copper);
+      font-size: 0.74rem;
+      font-weight: 950;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .path h3 {
+      margin: 18px 0 0;
+      color: var(--forest);
+      font-size: 1.28rem;
+    }
+
+    .path p {
+      margin: 10px 0 0;
+      color: rgba(23, 32, 27, 0.7);
+    }
+
+    .representation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .representation h2 {
+      margin: 10px 0 0;
+      font-size: 3rem;
+      line-height: 1.06;
+    }
+
+    .representation p {
+      max-width: 730px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .representation__proof {
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+    }
+
+    .representation__proof strong {
+      display: block;
+      color: var(--gold);
+      font-size: 3.1rem;
+      line-height: 1;
+    }
+
+    .representation__proof span {
+      display: block;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 800;
+    }
+
+    .closing-cta {
+      background: var(--paper);
+      padding: 72px 0;
+    }
+
+    .closing-cta__panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 26px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .closing-cta h2 {
+      margin: 8px 0 0;
+      color: var(--forest);
+      font-size: 2.4rem;
+      line-height: 1.08;
+    }
+
+    .closing-cta p {
+      max-width: 700px;
+      margin: 14px 0 0;
+      color: rgba(23, 32, 27, 0.72);
+      font-size: 1.02rem;
+    }
+
+    .closing-cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .site-footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 46px 0;
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.7fr) minmax(0, 1fr);
+      gap: 36px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: flex-end;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 800;
+    }
+
+    .footer-note {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      padding-top: 24px;
+    }
+
+    @media (max-width: 1040px) {
+      .system-grid,
+      .paths {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .topbar__inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav__inner {
+        min-height: 72px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav__links {
+        position: absolute;
+        top: 72px;
+        right: 16px;
+        left: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border: 1px solid var(--line);
+        background: var(--white);
+        padding: 8px;
+      }
+
+      .nav__links.is-open {
+        display: flex;
+      }
+
+      .nav__links a {
+        padding: 14px 12px;
+      }
+
+      .nav__cta {
+        display: none;
+      }
+
+      .hero,
+      .hero__inner {
+        min-height: 780px;
+      }
+
+      .hero h1 {
+        font-size: 3.4rem;
+      }
+
+      .hero__metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        min-height: auto;
+        padding: 18px;
+      }
+
+      .metric + .metric {
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+
+      .section-heading,
+      .split,
+      .origin,
+      .representation,
+      .closing-cta__panel,
+      .footer__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .split__image {
+        min-height: 430px;
+      }
+
+      .not-list,
+      .change {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-cta__actions,
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        display: none;
+      }
+
+      .brand {
+        min-width: 0;
+        gap: 10px;
+      }
+
+      .brand__mark {
+        width: 40px;
+        height: 40px;
+      }
+
+      .brand__name {
+        max-width: 190px;
+        font-size: 0.94rem;
+      }
+
+      .brand__sub {
+        font-size: 0.62rem;
+      }
+
+      .hero,
+      .hero__inner {
+        min-height: 820px;
+      }
+
+      .hero__inner {
+        padding-top: 56px;
+      }
+
+      .hero h1 {
+        font-size: 2.42rem;
+        line-height: 1.04;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero__metrics {
+        bottom: 12px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .section-heading h2,
+      .statement h2,
+      .representation h2 {
+        font-size: 2.15rem;
+      }
+
+      .origin__panel h2,
+      .closing-cta h2 {
+        font-size: 2rem;
+      }
+
+      .pressure-list,
+      .system-grid,
+      .paths {
+        grid-template-columns: 1fr;
+      }
+
+      .origin__panel,
+      .origin__body,
+      .closing-cta__panel {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span>For independent advisors ready to grow without giving up control.</span>
+      <div class="topbar__links">
+        <a href="#system">Performance System</a>
+        <a href="#changes">What Changes</a>
+        <a href="#contact">Start the Conversation</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <nav class="nav__inner" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="SHERPA Guild home">
+        <span class="brand__mark">SG</span>
+        <span class="brand__name">
+          SHERPA Guild
+          <span class="brand__sub">Advisor Performance Collective</span>
+        </span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div id="navLinks" class="nav__links">
+        <a href="#problem">Problem</a>
+        <a href="#origin">Guild Model</a>
+        <a href="#system">System</a>
+        <a href="#changes">Outcomes</a>
+        <a href="#options">Options</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn btn--primary nav__cta" href="#contact">We Should Talk</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img
+        class="hero__image"
+        src="./assets/ffd-hero-image-2.png"
+        alt="A mountain lodge surrounded by forest and open sky"
+      />
+      <div class="hero__inner">
+        <div>
+          <div class="eyebrow">Independence Was Never the Problem. Isolation Was.</div>
+          <h1 id="hero-title">Market leverage for independent advisors.</h1>
+          <p>
+            SHERPA Guild is a performance collective built to increase EBITDA, improve operational efficiency, and create real leverage without taking ownership of your firm.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--light" href="#system">See the System</a>
+            <a class="btn btn--outline" href="#contact">Start the Conversation</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero__metrics" aria-label="SHERPA Guild principles">
+        <div class="metric">
+          <strong>No equity</strong>
+          <span>You keep ownership, control, and client relationships.</span>
+        </div>
+        <div class="metric">
+          <strong>No roll-up</strong>
+          <span>This is collective leverage, not consolidation.</span>
+        </div>
+        <div class="metric">
+          <strong>No isolation</strong>
+          <span>You remain independent without negotiating as one firm alone.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="section">
+      <div class="section__inner split">
+        <img class="split__image" src="./assets/ffd-hero-image.png" alt="A mountain town at dusk with warm lights" />
+        <div class="statement">
+          <div class="eyebrow">The Reality</div>
+          <h2>You built the firm for independence. The hidden cost was leverage.</h2>
+          <p>
+            Independent advisors are responsible for everything: systems, growth, vendors, operations, retention, client experience, and enterprise value.
+          </p>
+          <p>
+            The problem is not the decision to stay independent. The problem is operating alone while the rest of the industry sells to you, buys you, or manages you.
+          </p>
+          <div class="pressure-list">
+            <div class="pressure-item">
+              <strong>Fragmented systems</strong>
+              <span>Too many disconnected tools and inconsistent workflows.</span>
+            </div>
+            <div class="pressure-item">
+              <strong>Vendor economics</strong>
+              <span>Pricing and service levels shaped by your size alone.</span>
+            </div>
+            <div class="pressure-item">
+              <strong>Inconsistent growth</strong>
+              <span>Acquisition, close rates, and retention depend too much on heroics.</span>
+            </div>
+            <div class="pressure-item">
+              <strong>Limited leverage</strong>
+              <span>You negotiate from a position of one.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="origin" class="section section--white">
+      <div class="section__inner">
+        <div class="origin">
+          <div class="origin__panel">
+            <div>
+              <div class="eyebrow">The Guild Model</div>
+              <h2>Skilled alone. Powerful when aligned.</h2>
+            </div>
+            <p>
+              The original guilds were not built for networking. They were built for standards, shared infrastructure, quality, protection, and economic strength.
+            </p>
+          </div>
+          <div class="origin__body">
+            <article class="origin-step">
+              <h3>They created standards.</h3>
+              <p>Quality became visible, enforceable, and trusted by the market.</p>
+            </article>
+            <article class="origin-step">
+              <h3>They shared infrastructure.</h3>
+              <p>Individual craftsmen gained systems they could not efficiently build alone.</p>
+            </article>
+            <article class="origin-step">
+              <h3>They gained economic power.</h3>
+              <p>Alignment created pricing power and protection from bad actors.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--forest" aria-labelledby="not-title">
+      <div class="section__inner">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Clear Boundaries</div>
+            <h2 id="not-title">Not another platform trying to own the advisor.</h2>
+          </div>
+          <p>
+            SHERPA Guild represents advisors. It does not insert itself between you and your clients or ask you to trade control for infrastructure.
+          </p>
+        </div>
+        <div class="not-list">
+          <article class="not-card">
+            <h3>SHERPA Guild is not</h3>
+            <ul>
+              <li>A TAMP</li>
+              <li>An aggregator</li>
+              <li>A private equity roll-up</li>
+              <li>A coaching program</li>
+              <li>A mastermind group</li>
+            </ul>
+          </article>
+          <article class="not-card">
+            <h3>SHERPA Guild does not</h3>
+            <ul>
+              <li>Take equity</li>
+              <li>Take control</li>
+              <li>Manage your firm</li>
+              <li>Own your client relationship</li>
+              <li>Force a one-size-fits-all platform</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="system" class="section section--white">
+      <div class="section__inner">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">The Modern Guild</div>
+            <h2>A performance system for independent advisory firms.</h2>
+          </div>
+          <p>
+            The Guild creates the structure independent firms need to improve economics, operations, market position, and enterprise value while staying fully independent.
+          </p>
+        </div>
+        <div class="system-grid">
+          <article class="system-card">
+            <span>Economics</span>
+            <h3>Increase EBITDA</h3>
+            <p>Improve the underlying economics of the firm through better execution, lower friction, and clearer growth systems.</p>
+          </article>
+          <article class="system-card">
+            <span>Operations</span>
+            <h3>Improve efficiency</h3>
+            <p>Standardize workflows, reporting, and client experience so the business relies less on custom effort.</p>
+          </article>
+          <article class="system-card">
+            <span>Leverage</span>
+            <h3>Negotiate collectively</h3>
+            <p>Aligned firms can create better vendor pricing, service levels, partner access, and outcomes.</p>
+          </article>
+          <article class="system-card">
+            <span>Value</span>
+            <h3>Enhance enterprise value</h3>
+            <p>Cleaner structure, transferable processes, and predictable outcomes can improve how the market values the firm.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="changes" class="section section--forest">
+      <div class="section__inner">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">What Actually Changes</div>
+            <h2>The math changes when structure improves.</h2>
+          </div>
+          <p>
+            Most advisors try to grow revenue. Few optimize enterprise value. SHERPA Guild is built to do both without adding unnecessary complexity.
+          </p>
+        </div>
+        <div class="change">
+          <article class="change-step">
+            <span>01</span>
+            <h3>EBITDA expands</h3>
+            <p>Operations become more efficient, acquisition systems improve, close rates rise, retention strengthens, and cost-to-serve comes down.</p>
+          </article>
+          <article class="change-step">
+            <span>02</span>
+            <h3>The multiple improves</h3>
+            <p>Standardized workflows, reporting, client experience, and growth systems create more predictable and transferable businesses.</p>
+          </article>
+          <article class="change-step">
+            <span>03</span>
+            <h3>Leverage increases</h3>
+            <p>You do not have to change firms. You change your position in the market through collective alignment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="options" class="section">
+      <div class="section__inner">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Your Options</div>
+            <h2>Independent advisors have been given three paths. The Guild creates a fourth.</h2>
+          </div>
+          <p>
+            The industry often frames the choice as staying isolated, joining a platform, or selling. SHERPA Guild offers another route.
+          </p>
+        </div>
+        <div class="paths">
+          <article class="path">
+            <span>Path 01</span>
+            <h3>Stay independent</h3>
+            <p>Maintain control, but remain operationally inefficient and economically exposed.</p>
+          </article>
+          <article class="path">
+            <span>Path 02</span>
+            <h3>Join a platform</h3>
+            <p>Gain infrastructure, but give up flexibility and control.</p>
+          </article>
+          <article class="path">
+            <span>Path 03</span>
+            <h3>Sell</h3>
+            <p>Realize value, but exit ownership and the firm you built.</p>
+          </article>
+          <article class="path path--guild">
+            <span>Path 04</span>
+            <h3>Join the Guild</h3>
+            <p>Keep your independence, increase efficiency, and expand enterprise value.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--forest">
+      <div class="section__inner representation">
+        <div>
+          <div class="eyebrow">Representation, Not Extraction</div>
+          <h2>The industry is built around taking from advisors. SHERPA Guild aligns with them.</h2>
+          <p>
+            TAMPs sell to advisors. Aggregators buy advisors. Platforms manage advisors. SHERPA Guild represents advisors by aligning with their growth, their economics, and their outcomes.
+          </p>
+        </div>
+        <div class="representation__proof">
+          <strong>Yours</strong>
+          <span>Your ownership. Your clients. Your firm. Better economics around what you already built.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="closing-cta" aria-labelledby="closing-title">
+      <div class="section__inner">
+        <div class="closing-cta__panel">
+          <div>
+            <div class="eyebrow">Let's Start the Conversation</div>
+            <h2 id="closing-title">Ready to operate differently?</h2>
+            <p>
+              If you are building a firm that is not just successful, but valuable, SHERPA Guild is designed for the next climb.
+            </p>
+          </div>
+          <div class="closing-cta__actions">
+            <a class="btn btn--primary" href="mailto:hello@yoursherpa.guide?subject=SHERPA%20Guild%20Conversation">Start the Conversation</a>
+            <a class="btn btn--outline-dark" href="#system">Review the System</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div>
+        <a class="brand" href="#top" aria-label="SHERPA Guild home">
+          <span class="brand__mark" style="border-color: rgba(255, 255, 255, 0.76); color: var(--white);">SG</span>
+          <span class="brand__name" style="color: var(--white);">
+            SHERPA Guild
+            <span class="brand__sub" style="color: rgba(255, 255, 255, 0.74);">Advisor Performance Collective</span>
+          </span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="#problem">Problem</a>
+        <a href="#origin">Guild Model</a>
+        <a href="#system">System</a>
+        <a href="#changes">Outcomes</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-note">
+        SHERPA Guild is a performance system for independent advisory firms. Participation details, partner terms, and advisor outcomes are evaluated through a direct conversation with the SHERPA team.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector("#navLinks");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.matches("a")) {
+        navLinks.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+</body>
+</html>
